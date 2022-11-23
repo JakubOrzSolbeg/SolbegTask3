@@ -1,7 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using SolbegTask3.DataBase.DbContext;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add DbContext
+
+builder.Services.AddDbContext<MainDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MainDb"));
+});
 
 var app = builder.Build();
 
