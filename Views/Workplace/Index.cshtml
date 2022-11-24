@@ -1,0 +1,9 @@
+@model SolbegTask3.Models.Workplace.WorkplaceList
+
+
+<h2>All workplaces @Model.AllCount</h2>
+
+@foreach (var modelWorkplace in Model.Workplaces)
+{
+    @await Html.PartialAsync("Workplace", modelWorkplace)
+}

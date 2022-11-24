@@ -6,26 +6,22 @@ namespace SolbegTask3.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
-
     public IActionResult Index()
     {
+        var employeeId = Request.Cookies["employeeId"];
+        if (String.IsNullOrEmpty(employeeId))
+        {
+            return RedirectToAction("Index", "Employee");
+        }
+        
+        ViewData["id"] = Request.Cookies["employeeId"];
         return View();
     }
 
-    public IActionResult Privacy()
+    [HttpPost]
+    public IActionResult RegisterRoom()
     {
-        return View();
+        return View("Index");
     }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+    
 }

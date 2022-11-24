@@ -1,0 +1,30 @@
+@model SolbegTask3.Models.Workplace.Workplace
+
+<div class="workplace-item">
+    <table>
+        <tr>
+            <td>
+                Floor: @Model.Floor
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Room: @Model.Room
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Table: @Model.Table
+            </td>
+        </tr>
+        <tr>Extra equipment: 
+            @foreach (var modelEquipment in Model.Equipments)
+            {
+                <td>@modelEquipment , </td>
+            }
+        </tr>
+    </table>
+    
+    
+</div>
+

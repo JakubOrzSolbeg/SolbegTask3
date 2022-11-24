@@ -1,0 +1,29 @@
+@model SolbegTask3.Models.Reservation.MakeReservation
+
+@{
+    ViewBag.Title = "Workplace search";
+    Layout = "_Layout";
+}
+
+<h2>Find your workplace</h2>
+<div class="search-parameters">
+     @using (Html.BeginForm("Register", "Reservation", FormMethod.Post))
+     {
+         <label for="datefrom">Date from</label>
+         <input id="datefrom" type="date" name="DateFrom" value="@Model.DateFrom"/>
+         
+         <label for="dateto">Date to</label>
+         <input id="dateto" type="date" name="DateTo" value="@Model.DateTo"/>
+         
+         <label for="floor">Flor number (optional)</label>
+         <input id="floor" type="number" name="Floor" value="@Model.Floor"/>
+         
+         <label for="room">Room number (optional)</label>
+         <input id="room" type="number" name="Room" value="@Model.Room"/> 
+         
+         <label for="table">Table number (optional)</label>
+         <input id="table" type="number" name="Table" value="@Model.Table"/>
+                                                                          
+         <button type="submit">Search</button>
+     }
+</div>

@@ -16,3 +16,17 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.centered{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(197,252,195,1) 50%, rgba(255,255,255,1) 100%);
+  width: 100%;
+  height: 100%;
+}
+
+.search-parameters > form{
+  display: flex;
+  flex-direction: column;
+}

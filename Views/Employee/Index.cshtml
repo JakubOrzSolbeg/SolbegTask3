@@ -1,0 +1,14 @@
+@model SolbegTask3.Models.Employee.EmployeeForm
+
+<div class="centered-background">
+    <h2>Please proide your credentials in order to book your room</h2>
+    @using (Html.BeginForm("RegisterEmployee", "Employee", FormMethod.Post))
+    {
+        <label for="empFirstName">Employee Name</label>
+        <input name="FirstName" id="empFirstName" type="text" value="@Model.FirstName" placeholder="First Name" required=""/>
+        <label for="empLastName">Employee Last Name</label>
+        <input name="LastName" id="empLastName" type="text" value="@Model.LastName" placeholder="Last Name" required=""/>
+        <input type="submit" value="Register"/>
+    }
+</div>
+

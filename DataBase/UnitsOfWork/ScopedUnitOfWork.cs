@@ -6,14 +6,23 @@ namespace SolbegTask3.DataBase.UnitsOfWork;
 public class ScopedUnitOfWork : IMainUnitOfWork
 {
     private readonly MainDbContext _dbContext;
-    public IEmployeeRepository Employees { get; set; } = null!;
-    public IEquipmentRepository Equipments { get; set; } = null!;
-    public IWorkplaceRepository Workplaces { get; set; } = null!;
-    public IReservationRepository Reservations { get; set; } = null!;
+    public IEmployeeRepository Employees { get; set; }
+    public IEquipmentRepository Equipments { get; set; }
+    public IWorkplaceRepository Workplaces { get; set; }
+    public IReservationRepository Reservations { get; set; }
 
-    public ScopedUnitOfWork(MainDbContext dbContext)
+    public ScopedUnitOfWork(
+        MainDbContext dbContext, 
+        IEmployeeRepository employees, 
+        IEquipmentRepository equipments, 
+        IWorkplaceRepository workplaces, 
+        IReservationRepository reservations)
     {
         _dbContext = dbContext;
+        Employees = employees;
+        Equipments = equipments;
+        Workplaces = workplaces;
+        Reservations = reservations;
     }
     
     public async Task Commit()
