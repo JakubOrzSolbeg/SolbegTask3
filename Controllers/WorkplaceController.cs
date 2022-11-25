@@ -21,4 +21,11 @@ public class WorkplaceController : Controller
         };
         return View("Index", resultModel);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Equipments()
+    {
+        var model = new EquipmentList() { Equipments = await _mainUnitOfWork.Equipments.GetAllEquipment() };
+        return View("Equipments", model: model);
+    }
 }

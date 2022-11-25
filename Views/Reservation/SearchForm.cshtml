@@ -1,0 +1,23 @@
+@model SolbegTask3.Models.Reservation.WorkplaceSearchParams
+
+<div class="search-parameters">
+    <h2>Enter your search parameters</h2>
+    @using (Html.BeginForm("Register", "Reservation", FormMethod.Post))
+    {
+        <label for="datefrom">Date from</label>
+        <input id="datefrom" type="date" required name="DateFrom" value="@Model.DateFrom!.Value.Date.ToString("yyyy-M-d")"/>
+
+        <label for="dateto">Date to</label>
+        <input id="dateto" type="date" required name="DateTo" value="@Model.DateTo!.Value.Date.ToString("yyyy-M-d")"/>
+
+        <div>
+            @foreach (var modelEquipment in Model.Equipments)
+            {
+                <label for="@modelEquipment.Type">@modelEquipment.Type</label>
+                <input id="@modelEquipment.Type" name="@modelEquipment.Type" @(modelEquipment.IsSelected ? "checked" : "") type="checkbox" value="@modelEquipment.IsSelected"/>
+            }
+        </div>
+
+        <button type="submit">Search</button>
+    }
+</div>

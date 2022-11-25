@@ -1,0 +1,34 @@
+@model List<SolbegTask3.Models.Workplace.Workplace>
+
+<div class="awaible-workplaces">
+
+    @foreach (var workplace in Model)
+    {
+        <div class="workplace-item">
+            <table>
+                <tr>
+                    <td>
+                        Floor: @workplace.Floor
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Room: @workplace.Room
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Table: @workplace.Table
+                    </td>
+                </tr>
+                <tr>
+                    <td>Extra equipment: </td>
+                    @foreach (var modelEquipment in workplace.Equipments)
+                    {
+                        <td>@modelEquipment </td>
+                    }
+                </tr>
+            </table>
+        </div>
+    }
+</div>

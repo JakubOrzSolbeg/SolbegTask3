@@ -5,6 +5,6 @@
 
 $(document).ready(function () {
     let today = new Date().toISOString().split('T')[0];
-    $("#dateto").attr('min', today);
-    $("#datefrom").attr('value', today).attr('min', today);
+    $("#dateto").attr('min', today)
+    $("#datefrom").attr('min', today);
 });

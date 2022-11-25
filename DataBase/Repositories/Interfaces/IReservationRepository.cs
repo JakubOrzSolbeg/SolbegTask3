@@ -4,6 +4,6 @@ namespace SolbegTask3.DataBase.Repositories.Interfaces;
 
 public interface IReservationRepository
 {
-    public Task<bool> MakeReservation(MakeReservation makeReservation, int workplaceId);
+    public Task<bool> MakeReservation(WorkplaceSearchParams makeReservation, int workplaceId);
     
 }

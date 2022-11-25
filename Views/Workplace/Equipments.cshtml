@@ -1,0 +1,27 @@
+@model SolbegTask3.Models.Workplace.EquipmentList
+
+@{
+    ViewBag.Title = "Workplace search";
+    Layout = "_Layout";
+}
+
+<h2> List of all equipment </h2>
+
+<table>
+    @foreach (var modelEquipment in Model.Equipments)
+    {
+        <tr>
+            <td>
+                Id of equipment: @modelEquipment.EquipmentId
+            </td>
+            <td>
+                Type: @modelEquipment.Type
+            </td>
+            <td>
+                @Html.CheckBoxFor(m => modelEquipment.IsSelected)
+            </td>
+        </tr>
+    }
+
+</table>
+

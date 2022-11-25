@@ -14,7 +14,7 @@ public class Reservation
     public int WorkplaceId { get; set; }
     [AllowNull]
     public virtual Employee Employee { get; set; }
-    public string EmployeeId { get; set; }
+    public int EmployeeId { get; set; }
 }
 
 public class ReservationConfiguration : IEntityTypeConfiguration<Reservation>

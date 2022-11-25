@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using SolbegTask3.DataBase.DbContext;
 using SolbegTask3.DataBase.Entities;
@@ -12,7 +13,7 @@ public class ReservationRepository : Repository, IReservationRepository
     {
     }
 
-    public async Task<bool> MakeReservation(MakeReservation makeReservation, int workplaceId)
+    public async Task<bool> MakeReservation(WorkplaceSearchParams makeReservation, int workplaceId)
     {
         var workplace = await DbContext.Workplaces
             .FirstOrDefaultAsync(w => w.Id.Equals(workplaceId));
@@ -21,13 +22,20 @@ public class ReservationRepository : Repository, IReservationRepository
             return false;
         }
 
-        await DbContext.Reservations.AddAsync(new Reservation()
+        if (makeReservation.DateFrom == null || makeReservation.DateTo == null)
         {
-            EmployeeId = makeReservation.EmployeeId,
-            TimeFrom = makeReservation.DateFrom,
-            TimeTo = makeReservation.DateTo,
-            WorkplaceId = workplace.Id
-        });
+            throw new ValidationException("Date cannot be null");
+        }
+        else
+        {
+            await DbContext.Reservations.AddAsync(new Reservation()
+            {
+                TimeFrom = makeReservation.DateFrom.Value.Date,
+                TimeTo = makeReservation.DateTo.Value.Date,
+                WorkplaceId = workplace.Id
+            });
+        }
+
         return true;
     }
 }
