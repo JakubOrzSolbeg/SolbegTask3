@@ -1,3 +1,4 @@
+using SolbegTask3.DataBase.Entities;
 using SolbegTask3.DataBase.UnitsOfWork;
 using SolbegTask3.Models;
 using SolbegTask3.Models.Employee;
@@ -15,8 +16,14 @@ public class EmployeeService : IEmployeeService
     
     public async Task<string> RegisterEmployee(EmployeeForm employeeForm)
     {
-        
-        var empId = Guid.NewGuid().ToString();
-        return empId;
+        var empGuid = Guid.NewGuid().ToString();
+        await _mainUnitOfWork.Employees.AddNewEmployee(new Employee()
+        {
+            Guid = empGuid,
+            FirstName = employeeForm.FirstName,
+            LastName = employeeForm.LastName
+        });
+        await _mainUnitOfWork.Commit();
+        return empGuid;
     }
 }

@@ -10,10 +10,10 @@ public class Reservation
     public DateTime TimeFrom { get; set; }
     public DateTime TimeTo { get; set; }
     [AllowNull]
-    public virtual Workplace Workplace { get; set; }
+    public Workplace Workplace { get; set; }
     public int WorkplaceId { get; set; }
     [AllowNull]
-    public virtual Employee Employee { get; set; }
+    public Employee Employee { get; set; }
     public int EmployeeId { get; set; }
 }
 

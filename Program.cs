@@ -19,9 +19,9 @@ builder.Services.AddScoped<IWorkplaceRepository, WorkplaceRepository>();
 
 builder.Services.AddScoped<IMainUnitOfWork, ScopedUnitOfWork>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
-
-
-
+builder.Services.AddScoped<IReservationService, ReservationService>();
+builder.Services.AddScoped<ISearchService, SearchService>();
+builder.Services.AddScoped<IWorkplaceService, WorkplaceService>();
 
 // Add DbContext
 

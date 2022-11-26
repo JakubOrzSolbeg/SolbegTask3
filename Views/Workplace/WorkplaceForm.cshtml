@@ -1,0 +1,27 @@
+@model SolbegTask3.Models.Workplace.Workplace
+
+@{
+    ViewBag.Title = "Add new workplace";
+    Layout = "_Layout";
+}
+
+<h2>Add new workplace</h2>
+    @using (Html.BeginForm("Add", "Workplace", FormMethod.Post))
+    {
+        <label for="floor">Floor: </label>
+        <input type="number" name="Floor" id="floor" required=""/>
+        <label for="room">Room: </label>
+        <input type="number" name="Room" id="room" required=""/>
+        <label for="table">Table: </label>
+        <input type="number" name="Table" id="table" required=""/>
+        
+        <div>
+            @foreach (var modelEquipment in Model.Equipments)
+            {
+                <label for="@modelEquipment">@modelEquipment</label>
+                <input id="@modelEquipment" name="@modelEquipment" type="checkbox" value="@modelEquipment"/>
+            }
+        </div>
+
+        <button type="submit">Add workplace</button>
+    }

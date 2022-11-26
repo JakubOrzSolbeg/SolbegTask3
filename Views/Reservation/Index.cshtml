@@ -6,5 +6,10 @@
 }
 
 @await Html.PartialAsync("SearchForm", model: Model.SearchParams)
-@await Html.PartialAsync("Workplace", model: Model.AwaibleWorkplaces)
+@await Html.PartialAsync("Workplace", model: Model.AwaibleWorkplaces,
+    new ViewDataDictionary(ViewData)
+        {
+            { "TimeFrom", Model.SearchParams.DateFrom!.Value.Date.ToString("yyyy-M-d")},
+            { "TimeTo", Model.SearchParams.DateTo!.Value.Date.ToString("yyyy-M-d")}
+        })
 

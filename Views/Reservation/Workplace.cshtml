@@ -1,34 +1,44 @@
 @model List<SolbegTask3.Models.Workplace.Workplace>
 
 <div class="awaible-workplaces">
-
+    
+@using (Html.BeginForm("Register", "Reservation", FormMethod.Post))
+{
+    <input id="timefrom" type="date" required name="TimeFrom" value="@ViewData["TimeFrom"]" hidden=""/>
+    <input id="timeto" type="date" required name="TimeTo" value="@ViewData["TimeTo"]" hidden=""/>
     @foreach (var workplace in Model)
     {
         <div class="workplace-item">
-            <table>
-                <tr>
-                    <td>
-                        Floor: @workplace.Floor
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Room: @workplace.Room
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Table: @workplace.Table
-                    </td>
-                </tr>
-                <tr>
-                    <td>Extra equipment: </td>
-                    @foreach (var modelEquipment in workplace.Equipments)
-                    {
-                        <td>@modelEquipment </td>
-                    }
-                </tr>
-            </table>
-        </div>
-    }
+                <table>
+                    <tr>
+                        <td>
+                            Floor: @workplace.Floor
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Room: @workplace.Room
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Table: @workplace.Table
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Extra equipment: </td>
+                        @foreach (var modelEquipment in workplace.Equipments)
+                        {
+                            <td>@modelEquipment </td>
+                        }
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="submit" name="WorkplaceId" value="@workplace.Id">Make reservation</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }
+}
 </div>

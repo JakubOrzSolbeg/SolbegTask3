@@ -2,7 +2,7 @@
 
 <div class="search-parameters">
     <h2>Enter your search parameters</h2>
-    @using (Html.BeginForm("Register", "Reservation", FormMethod.Post))
+    @using (Html.BeginForm("Search", "Reservation", FormMethod.Post))
     {
         <label for="datefrom">Date from</label>
         <input id="datefrom" type="date" required name="DateFrom" value="@Model.DateFrom!.Value.Date.ToString("yyyy-M-d")"/>

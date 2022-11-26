@@ -1,11 +1,9 @@
-using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
 using SolbegTask3.DataBase.DbContext;
+using SolbegTask3.DataBase.Entities;
 using SolbegTask3.DataBase.Repositories.Interfaces;
-using SolbegTask3.DataBase.UnitsOfWork;
 using SolbegTask3.Models.Reservation;
-using SolbegTask3.Models.Workplace;
+using Workplace = SolbegTask3.Models.Workplace.Workplace;
 
 namespace SolbegTask3.DataBase.Repositories.Implementations;
 
@@ -19,6 +17,7 @@ public class WorkplaceRepository : Repository, IWorkplaceRepository
     {
         var result = await DbContext.Workplaces.Select(workplace => new Workplace()
         {
+            Id = workplace.Id,
             Floor = workplace.Floor,
             Room = workplace.Room,
             Table = workplace.Table,
@@ -79,5 +78,31 @@ public class WorkplaceRepository : Repository, IWorkplaceRepository
             }
         }
         return finalResult;
+    }
+
+    public async Task AddWorkplace(Entities.Workplace workplace, List<string>? equipment)
+    {
+        DbContext.Workplaces.Add(workplace);
+        await DbContext.SaveChangesAsync();
+        if (equipment == null)
+        {
+            return;
+        }
+        
+        foreach (var s in equipment)
+        {
+            var eq = await DbContext.Equipments.Where(e => e.Type.Equals(s)).Select(e => e.Id).FirstAsync();
+            if (eq == 0)
+            {
+                continue;
+            }
+
+            await DbContext.EquipmentForWorkplaces.AddAsync(new EquipmentForWorkplace()
+            {
+                Count = 1,
+                EquipmentId = eq,
+                WorkplaceId = workplace.Id
+            });
+        }
     }
 }

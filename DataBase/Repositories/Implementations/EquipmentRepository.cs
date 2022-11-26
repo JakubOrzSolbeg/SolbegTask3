@@ -21,6 +21,11 @@ public class EquipmentRepository : Repository, IEquipmentRepository
             .ToListAsync();
     }
 
+    public async Task<List<string>> GetEquipmentNames()
+    {
+        return await DbContext.Equipments.Select(e => e.Type).ToListAsync();
+    }
+
     public async Task<Dictionary<int, string>> GetAllEquipmentsNamesDict()
     {
         return await DbContext.Equipments

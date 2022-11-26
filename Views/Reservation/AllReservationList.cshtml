@@ -1,0 +1,45 @@
+@model List<SolbegTask3.Models.Reservation.ReservationDetailed>
+
+@{
+    ViewBag.Title = "All reservation list";
+    Layout = "_Layout";
+}
+
+<h2>List of all reservations</h2>
+<div class="reservation-list">
+    <table>
+        <thead>
+        <tr>
+            <th>
+                Reserved by:
+            </th>
+            <th>
+                Room:
+            </th>
+            <th>
+                Reservation start:
+            </th>
+            <th>
+                Reservation end:
+            </th>
+        </tr>
+        </thead>
+        @foreach (var reservationDetailed in Model)
+        {
+            <tr>
+                <td>
+                    @reservationDetailed.EmployeeFirstName @reservationDetailed.EmployeeLastName
+                </td>
+                <td>
+                    Room: @reservationDetailed.Room Table: @reservationDetailed.Table Floor: @reservationDetailed.Floor
+                </td>
+                <td>
+                    @reservationDetailed.TimeFrom.Date.ToString("d-M-yyyy")
+                </td>
+                <td>
+                    @reservationDetailed.TimeTo.Date.ToString("d-M-yyyy")
+                </td>
+            </tr>
+        }
+    </table>
+</div>

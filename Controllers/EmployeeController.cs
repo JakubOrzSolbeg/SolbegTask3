@@ -28,4 +28,11 @@ public class EmployeeController : Controller
         HttpContext.Response.Cookies.Append(key: "employeeId", value: empId);
         return RedirectToAction("Index", "Home");
     }
+
+    [HttpGet]
+    public IActionResult Logout()
+    {
+        HttpContext.Response.Cookies.Delete("employeeId");
+        return RedirectToAction("Index", "Home");
+    }
 }

@@ -1,0 +1,51 @@
+@model List<SolbegTask3.Models.Reservation.UserReservation>
+
+@{
+    ViewBag.Title = "Your reservations";
+    Layout = "_Layout";
+}
+
+<h2>List of all Your reservations</h2>
+<div class="reservation-list">
+    <table>
+        <thead>
+        <tr>
+            <th>
+                Room:
+            </th>
+            <th>
+                Reservation start:
+            </th>
+            <th>
+                Reservation end:
+            </th>
+            <th>
+                Action:
+            </th>
+        </tr>
+        </thead>
+        @foreach (var reservationDetailed in Model)
+        {
+            <tr>
+                <td>
+                    Room: @reservationDetailed.Workplace.Room Table: @reservationDetailed.Workplace.Table Floor: @reservationDetailed.Workplace.Floor
+                </td>
+                <td>
+                    @reservationDetailed.TimeFrom.Date.ToString("d-M-yyyy")
+                </td>
+                <td>
+                    @reservationDetailed.TimeTo.Date.ToString("d-M-yyyy")
+                </td>
+                <td>
+                    <button type="button"
+                            name="ReservationId"
+                            value=@reservationDetailed.ReservationId
+                            onclick="location.href='@Url.Action("Cancel", "Reservation", new {ReservationId = @reservationDetailed.ReservationId})'">
+                        Cancel
+                    </button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
